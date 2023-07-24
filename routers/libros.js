@@ -26,4 +26,13 @@ storageLibro.get("/estado", (req,res)=>{
         }
     );
 })
+storageLibro.get("/autoresp", (req,res)=>{
+    conex.query(
+        'SELECT l.titulo FROM `libro` AS l WHERE id_autor= 1',
+        (err,data,fill)=>{
+            res.send(JSON.stringify(data));
+        }
+    );
+})
+
 export default storageLibro;
