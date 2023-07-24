@@ -18,4 +18,12 @@ storageLibro.get("/", (req,res)=>{
         }
     );
 })
+storageLibro.get("/estado", (req,res)=>{
+    conex.query(
+        'SELECT l.titulo, autor.nombre AS autor FROM `libro` AS l INNER JOIN autor ON l.id_autor = autor.id_autor WHERE id_estado = 1',
+        (err,data,fill)=>{
+            res.send(JSON.stringify(data));
+        }
+    );
+})
 export default storageLibro;
