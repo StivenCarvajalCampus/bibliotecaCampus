@@ -18,4 +18,13 @@ storagePrestamo.get("/", (req,res)=>{
         }
     );
 })
+
+storagePrestamo.get("/prestados", (req,res)=>{
+    conex.query(
+        'SELECT p.fecha_devolucion, libro.titulo AS libro FROM `prestamo`AS p INNER JOIN libro ON p.id_libro = libro.id_libro WHERE estado = "prestado"',
+        (err,data,fill)=>{
+            res.send(JSON.stringify(data));
+        }
+    );
+})
 export default storagePrestamo;
